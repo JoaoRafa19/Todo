@@ -11,7 +11,6 @@ class RegisterPage extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(title: const Text('RegisterPage')),
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 40),
@@ -114,7 +113,7 @@ class RegisterPage extends GetView<RegisterController> {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
-                          controller: controller.emailController,
+                          controller: controller.nameController,
                           obscureText: false,
                           decoration: const InputDecoration(
                               labelText: 'Nome',
@@ -130,27 +129,30 @@ class RegisterPage extends GetView<RegisterController> {
                         Container(
                           padding: EdgeInsets.only(
                               left: Get.width * 0.1, right: Get.width * 0.1),
-                          child: GestureDetector(
-                            onTap: () {
-                              if (_formKey.currentState!.validate()) {
-                                controller.register();
-                              }
-                            },
-                            child: Container(
-                              height: 50,
-                              width: double.infinity,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              child: const Center(
-                                child: Text(
-                                  'Cadastrar',
-                                  style: TextStyle(color: Colors.black87),
-                                ),
-                              ),
-                            ),
-                          ),
+                          child: Obx(() => GestureDetector(
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    controller.register();
+                                  }
+                                },
+                                child: controller.loading.value
+                                    ? const CircularProgressIndicator()
+                                    : Container(
+                                        height: 50,
+                                        width: double.infinity,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: const Center(
+                                          child: Text(
+                                            'Cadastrar',
+                                            style: TextStyle(
+                                                color: Colors.black87),
+                                          ),
+                                        ),
+                                      ),
+                              )),
                         ),
                       ],
                     ))

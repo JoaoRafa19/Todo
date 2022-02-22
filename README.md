@@ -8,7 +8,7 @@ TODO app
 # Features
 
 - [x] Firebase Login
-- [ ] Firebase Register
+- [x] Firebase Register
 - [ ] Login/Registration With Google
 
 
