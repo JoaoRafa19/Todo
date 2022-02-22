@@ -15,7 +15,7 @@ class LoginController extends GetxController {
 
   Future login() async {
     loading.value = true;
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     final user =
         await repository.login(emailController.text, passwordController.text);
     if (user == null) {

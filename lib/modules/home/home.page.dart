@@ -26,8 +26,8 @@ class HomePage extends GetView<HomeController> {
               ),
               Obx(() => ListTile(
                     title: controller.loading.value
-                        ? Icon(Icons.logout)
-                        : Text('Logout'),
+                        ? const Icon(Icons.logout)
+                        : const Text('Logout'),
                     onTap: () async {
                       controller.logOut();
                     },
@@ -35,7 +35,7 @@ class HomePage extends GetView<HomeController> {
             ],
           ),
         ),
-        appBar: AppBar(title: Text('HomePage')),
-        body: SafeArea(child: Text('HomeController')));
+        appBar:  AppBar(title: const Text('HomePage')),
+        body: const SafeArea(child: Text('HomeController')));
   }
 }

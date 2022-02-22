@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo/app/routes.dart';
 
 import 'login.controller.dart';
 
 class LoginPage extends GetView<LoginController> {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class LoginPage extends GetView<LoginController> {
                         TextFormField(
                           controller: controller.emailController,
                           cursorColor: Colors.white,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                               labelText: 'Email',
                               fillColor: Colors.white,
@@ -89,7 +90,7 @@ class LoginPage extends GetView<LoginController> {
                         ),
                         TextButton(
                             onPressed: () => Get.toNamed('/home'),
-                            child: Text("registrar")),
+                            child: const Text("registrar")),
                       ],
                     ),
                   ))
