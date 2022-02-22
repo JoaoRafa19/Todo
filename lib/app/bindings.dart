@@ -22,4 +22,5 @@ class RegisterBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<RegisterController>(() => RegisterController());
   }
+  
 }

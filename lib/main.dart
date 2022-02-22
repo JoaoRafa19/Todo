@@ -11,5 +11,5 @@ void main() async {
 
   );
 
-  return runApp(const AppWidget());
+  return runApp( const AppWidget());
 }

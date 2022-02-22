@@ -9,7 +9,12 @@ TODO app
 
 - [x] Firebase Login
 - [x] Firebase Register
-- [ ] Login/Registration With Google
+- [x] Login/Registration With Google
+- [ ] Profile drawer
+- [ ] Task DB model
+- [ ] Task structure
+
+
 
 
 

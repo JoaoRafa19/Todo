@@ -11,7 +11,7 @@ class AppPages {
     GetPage(
       binding: HomeBinding(),
       name: Routes.home,
-      page: () => const HomePage(),
+      page: () => HomePage(),
     ),
     GetPage(
       binding: LoginBinding(),
@@ -20,7 +20,7 @@ class AppPages {
     ),
     GetPage(
         name: Routes.register,
-        page: () =>  RegisterPage(),
+        page: () => RegisterPage(),
         binding: RegisterBinding()),
   ];
 }
