@@ -10,9 +10,10 @@ TODO app
 - [x] Firebase Login
 - [x] Firebase Register
 - [x] Login/Registration With Google
-- [ ] Profile drawer
+- [x] Profile drawer
 - [ ] Task DB model
 - [ ] Task structure
+- [x] Dark Mode
 
 
 

@@ -28,7 +28,29 @@ class HomePage extends GetView<HomeController> {
                       child: Obx(() => controller.user.value.photoURL != null
                           ? Image.network(
                               controller.user.value.photoURL!,
+                              
                               fit: BoxFit.contain,
+                              frameBuilder: (context, child, frame,
+                                  wasSynchronouslyLoaded) {
+                                return Container(
+                                  child: child,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle),
+                                );
+                              },
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return Container(
+                                    child: child,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                  );
+                                } else {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+                              },
                             )
                           : Image.asset(
                               'assets/images/account.png',
