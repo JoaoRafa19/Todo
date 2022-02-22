@@ -61,15 +61,24 @@ class LoginPage extends GetView<LoginController> {
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
-                            child: const Center(
-                              child: Text(
-                                'Entrar',
-                                style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
+                            child: Obx(() => Center(
+                                  child: controller.loading.value
+                                      ? SizedBox(
+                                          width: 20,
+                                          child: CircularProgressIndicator(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            strokeWidth: 2,
+                                          ),
+                                        )
+                                      : const Text(
+                                          'Entrar',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                )),
                           ),
                           onTap: () {
                             controller.login();

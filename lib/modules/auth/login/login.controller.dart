@@ -9,9 +9,13 @@ class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final loading = false.obs;
+
   final AuthRepository repository = AuthRepository.instance;
 
   Future login() async {
+    loading.value = true;
+    await Future.delayed(Duration(seconds: 3));
     final user =
         await repository.login(emailController.text, passwordController.text);
     if (user == null) {
@@ -35,6 +39,7 @@ class LoginController extends GetxController {
           )
         ],
       ));
+      loading.value = false;
     } else {
       Get.offNamed(Routes.home);
     }
