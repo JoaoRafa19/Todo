@@ -6,6 +6,6 @@ class HomeController extends GetxController {
 
   final loading = false.obs;
   Future logOut() async {
-    await Get.offAllNamed(Routes.login);
+    Get.offAllNamed(Routes.login);
   }
 }

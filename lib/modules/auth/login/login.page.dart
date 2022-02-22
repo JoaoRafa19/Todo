@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/app/routes.dart';
 
 import 'login.controller.dart';
 
@@ -20,6 +21,17 @@ class LoginPage extends GetView<LoginController> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 40),
+                          child: Image.asset(
+                            'assets/images/to-do-list.png',
+                            isAntiAlias: true,
+                            width: 100,
+                            alignment: Alignment.center,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                         TextFormField(
                           controller: controller.emailController,
                           cursorColor: Colors.white,
@@ -89,8 +101,11 @@ class LoginPage extends GetView<LoginController> {
                           height: 20,
                         ),
                         TextButton(
-                            onPressed: () => Get.toNamed('/home'),
-                            child: const Text("registrar")),
+                            onPressed: () => Get.toNamed(Routes.register),
+                            child: const Text(
+                              "registrar",
+                              style: TextStyle(color: Colors.grey),
+                            )),
                       ],
                     ),
                   ))

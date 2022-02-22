@@ -17,7 +17,9 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: FirebaseAuth.instance.currentUser == null
+      initialRoute: FirebaseAuth.instance.currentUser == null ||
+              (FirebaseAuth.instance.currentUser != null &&
+                  FirebaseAuth.instance.currentUser!.isAnonymous)
           ? Routes.login
           : Routes.home,
     );
