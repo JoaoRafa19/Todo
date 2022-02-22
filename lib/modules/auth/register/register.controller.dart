@@ -5,10 +5,9 @@ import 'package:todo/data/repositories/auth.repository.dart';
 class RegisterController extends GetxController {
   RegisterController();
 
-  //TextEditing controllers
-
   var loading = false.obs;
 
+  //TextEditing controllers
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
