@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:todo/app/app.pages.dart';
 import 'package:todo/app/routes.dart';
 import 'package:todo/shared/themes.dart';
 
 class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key}) : super(key: key);
+  AppWidget({Key? key}) : super(key: key);
+  final appdata = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class AppWidget extends StatelessWidget {
       getPages: AppPages.routes,
       theme: Themes.light,
       darkTheme: Themes.dark,
-      themeMode: ThemeService.instance.theme,
+      themeMode: ThemeService().theme,
       initialRoute: FirebaseAuth.instance.currentUser == null ||
               (FirebaseAuth.instance.currentUser != null &&
                   FirebaseAuth.instance.currentUser!.isAnonymous)

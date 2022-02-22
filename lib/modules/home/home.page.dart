@@ -11,6 +11,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.reloadAll();
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: Drawer(
@@ -80,9 +81,9 @@ class HomePage extends GetView<HomeController> {
                       Switch(
                         value: controller.theme.value,
                         onChanged: (value) => {
-                          ThemeService.instance.switchTheme(),
+                          ThemeService().switchTheme(),
                           controller.theme.value =
-                              ThemeService.instance.theme == ThemeMode.dark
+                              ThemeService().theme == ThemeMode.dark
                         },
                       ),
                       const Text("Dark"),
