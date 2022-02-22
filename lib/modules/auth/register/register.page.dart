@@ -126,18 +126,21 @@ class RegisterPage extends GetView<RegisterController> {
                               )),
                         ),
                         const SizedBox(height: 20),
-                        Container(
-                          padding: EdgeInsets.only(
-                              left: Get.width * 0.1, right: Get.width * 0.1),
-                          child: Obx(() => GestureDetector(
-                                onTap: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    controller.register();
-                                  }
-                                },
-                                child: controller.loading.value
-                                    ? const CircularProgressIndicator()
-                                    : Container(
+                        Obx(() => controller.loading.value
+                            ? const CircularProgressIndicator()
+                            : Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        left: Get.width * 0.1,
+                                        right: Get.width * 0.1),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          controller.register();
+                                        }
+                                      },
+                                      child: Container(
                                         height: 50,
                                         width: double.infinity,
                                         decoration: const BoxDecoration(
@@ -152,10 +155,68 @@ class RegisterPage extends GetView<RegisterController> {
                                           ),
                                         ),
                                       ),
-                              )),
-                        ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  const Text('or'),
+                                  const SizedBox(height: 20),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        left: Get.width * 0.1,
+                                        right: Get.width * 0.1),
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          await controller.singInWithGoogle();
+                                        },
+                                        child: controller.loading.value
+                                            ? const CircularProgressIndicator()
+                                            : Container(
+                                                height: 50,
+                                                width: double.infinity,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(10),
+                                                  ),
+                                                ),
+                                                child: Center(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(5),
+                                                        child: Image.asset(
+                                                          'assets/images/google-icon.png',
+                                                          isAntiAlias: true,
+                                                          width: 20,
+                                                          alignment:
+                                                              Alignment.center,
+                                                        ),
+                                                      ),
+                                                      const Text(
+                                                        'Entre com o google',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black87),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ))
                       ],
-                    ))
+                    )),
               ],
             ),
           ),

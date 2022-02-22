@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user.model.dart';
 
 class AuthRepository {
@@ -29,6 +29,35 @@ class AuthRepository {
     return api.currentUser;
   }
 
+  Future<UserCredential?> googleSingIn() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+          idToken: googleAuth?.idToken, accessToken: googleAuth?.accessToken);
+      UserCredential user = await api.signInWithCredential(credential);
+
+      if (user.user != null) {
+        UserModel userModel = UserModel(
+          email: user.user!.email!,
+          name: user.user!.displayName!,
+          uid: user.user!.uid,
+          createdAt: DateTime.now(),
+        );
+        await db.collection('users').add(userModel.toJson());
+
+        return user;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<UserCredential?> register(
       {required String email,
       required String password,
@@ -51,7 +80,7 @@ class AuthRepository {
         return null;
       }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
