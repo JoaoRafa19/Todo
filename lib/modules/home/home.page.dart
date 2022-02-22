@@ -11,7 +11,6 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.reloadAll();
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: Drawer(

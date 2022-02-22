@@ -8,7 +8,7 @@ class Task {
 
   Task(this.done, this.task, this.createAt, this.updateAt, this.deadline, this.uid);
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'done': done,
       'task': task,
@@ -19,7 +19,7 @@ class Task {
     };
   }
 
-  factory Task.fromMap(Map<String, dynamic> map) {
+  factory Task.fromJson(Map<String, dynamic> map) {
     return Task(
       map['done'],
       map['task'],
