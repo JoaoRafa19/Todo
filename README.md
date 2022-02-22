@@ -1,16 +1,33 @@
-# todo
+# TODO
 
 TODO app 
 
-## Getting Started
+# Objectives
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+# Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- [x] Firebase Login
+- [x] Firebase Register
+- [x] Login/Registration With Google
+- [x] Profile drawer
+- [ ] Task DB model
+- [ ] Task structure
+- [x] Dark Mode
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+
+
+# APK
+
+# Zip project file
+
+# Demo video
+
+## Register
+
+    The registration is free.
+    For registration only need your name, e-mail and a password password.
+    The registration is used to help us to keep monitoring the project and the use, to generate statistics and to help us to improve the quality of the service.
+

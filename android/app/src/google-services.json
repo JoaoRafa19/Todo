@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "40096343113",
+    "project_id": "get-todoish",
+    "storage_bucket": "get-todoish.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40096343113:android:5d74b05aebc329b79b4b98",
+        "android_client_info": {
+          "package_name": "joao.rafa.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40096343113-vceq22qgvri6v55478f22ji9g9n20dk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "joao.rafa.todo",
+            "certificate_hash": "627999cf2638af31df94d5e12d9ded12b4598e76"
+          }
+        },
+        {
+          "client_id": "40096343113-0t5ho0kufqqpcsvr4ln9pjg6v56s6oqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY3K2Z1Vktw8LT79hFZ7AVHgOfg2Cd2Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "40096343113-0t5ho0kufqqpcsvr4ln9pjg6v56s6oqk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "40096343113-q5t8e009ejgb2orlj72a62krd6g0lrct.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "joao.rafa"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
