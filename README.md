@@ -11,17 +11,27 @@ TODO app
 - [x] Firebase Register
 - [x] Login/Registration With Google
 - [x] Profile drawer
+- [x] Dark Mode
 - [ ] Task DB model
 - [ ] Task structure
-- [x] Dark Mode
 
 
 
 
 
-# APK
+# [APK](https://github.com/JoaoRafa19/Todo/releases/download/Base/app-release.apk)
 
-# Zip project file
+You can download the APK from the [releases page](https://github.com/JoaoRafa19/Todo/releases)
+or click on the button below.
+
+[Download APK](https://github.com/JoaoRafa19/Todo/releases/download/Base/app-release.apk)
+
+# [Zip project file](https://github.com/JoaoRafa19/Todo/archive/refs/tags/Base.zip)
+
+You can download the Zip file project from the [releases page](https://github.com/JoaoRafa19/Todo/releases)
+or click on the button below.
+
+[Download ZIP](https://github.com/JoaoRafa19/Todo/archive/refs/tags/Base.zip)
 
 # Demo video
 
