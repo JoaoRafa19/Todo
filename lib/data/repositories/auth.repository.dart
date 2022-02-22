@@ -25,6 +25,18 @@ class AuthRepository {
     }
   }
 
+  Future<UserCredential?> loginWithGoogle(){
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    return _googleSignIn.signIn().then((account) async {
+      final GoogleSignInAuthentication googleAuth = await account!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      return api.signInWithCredential(credential);
+    });
+  }
+
   Future<User?> getCurrentUser() async {
     return api.currentUser;
   }
