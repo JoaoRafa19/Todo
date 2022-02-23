@@ -63,7 +63,7 @@ class TaskRepository {
   }
 
   Future<List<Task>> getByDate(String date) async {
-    final snapshot = await api.where("deadline", isEqualTo: date).get();
+    final snapshot = await api.where("deadline", isLessThanOrEqualTo: date).get();
     return snapshot.docs.map((doc) => Task.fromJson(doc.data())).toList();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,12 @@ class HomeController extends GetxController {
 
   final tasks = <Task>[].obs;
 
+  final loadintasks = false.obs;
+
+  final notTodayTasks = <Task>[].obs;
+
   var todayVisibility = true.obs;
+  var tomorrowVisibility = true.obs;
 
   // TextControllers
   TextEditingController taskController = TextEditingController();
@@ -28,12 +34,24 @@ class HomeController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
+    loadintasks.value = true;
+    await Future.delayed(const Duration(seconds: 2));
     FirebaseAuth.instance.currentUser == null
         ? Get.offAllNamed(Routes.login)
         : user = FirebaseAuth.instance.currentUser!.obs;
 
     theme.value = ThemeService().theme == ThemeMode.dark;
-    tasks.value = await _repository.getByUser(user.value.uid);
+    await getTasks();
+    loadintasks.value = false;
+  }
+
+  Future getTasks() async {
+    final tasks = await _repository.getByUser(user.value.uid);
+    this.tasks.value =
+        tasks.where((task) => task.deadline!.isBefore(DateTime.now())).toList();
+
+    notTodayTasks.value =
+        tasks.where((task) => task.deadline!.isAfter(DateTime.now())).toList();
   }
 
   Future logOut() async {
@@ -42,14 +60,15 @@ class HomeController extends GetxController {
 
   Future closeTask(Task task) async {
     task.done = !task.done!;
+    task.updateAt = DateTime.now();
     await _repository.update(task);
 
-    tasks.value = await _repository.getByUser(user.value.uid);
+    await getTasks();
   }
 
   Future removeTask(Task task) async {
     await _repository.delete(task);
-    tasks.value = await _repository.getByUser(user.value.uid);
+    await getTasks();
   }
 
   Future addTask() async {
@@ -65,7 +84,7 @@ class HomeController extends GetxController {
           uid: currentUser!.uid);
       final ref = await _repository.add(task);
       if (!ref.isBlank!) {
-        tasks.add(task);
+        await getTasks();
         taskController.clear();
         Get.back();
       }
