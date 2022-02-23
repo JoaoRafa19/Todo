@@ -7,13 +7,29 @@ TODO app
 
 # Features
 
+## Implemented 
+
 - [x] Firebase Login
 - [x] Firebase Register
 - [x] Login/Registration With Google
 - [x] Profile drawer
 - [x] Dark Mode
-- [ ] Task DB model
-- [ ] Task structure
+- [x] Task list
+- [x] Today and Upcoming tasks
+- [x] Add task
+- [x] Remove task
+
+### Upcoming
+
+- [ ] Task list with filter
+- [ ] Task list with search
+- [ ] Task list with sorting
+- [ ] Task with time and date
+- [ ] Task with priority
+- [ ] Task with reminder
+- [ ] Alarm for task
+- [ ] Task with subtasks
+- [ ] Taks with notification
 
 
 
