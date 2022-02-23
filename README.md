@@ -35,12 +35,11 @@ TODO app
 
 
 
-# [APK](https://github.com/JoaoRafa19/Todo/releases/download/Base/app-release.apk)
-
+# APK
 You can download the APK from the [releases page](https://github.com/JoaoRafa19/Todo/releases)
-or click on the button below.
+.
 
-[Download APK](https://github.com/JoaoRafa19/Todo/releases/download/Base/app-release.apk)
+
 
 # [Zip project file](https://github.com/JoaoRafa19/Todo/archive/refs/tags/Base.zip)
 
