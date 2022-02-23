@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
     }
 
     throw UnsupportedError(
@@ -57,11 +54,27 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD10OVLxSy4L55RsfD3wThdZt5mM5g_brM',
-    appId: '1:40096343113:ios:34912f105a5f497b9b4b98',
+    appId: '1:40096343113:ios:620e2e5d29ee4a4c9b4b98',
     messagingSenderId: '40096343113',
     projectId: 'get-todoish',
     storageBucket: 'get-todoish.appspot.com',
-    iosClientId: '40096343113-q5t8e009ejgb2orlj72a62krd6g0lrct.apps.googleusercontent.com',
-    iosBundleId: 'joao.rafa',
+    androidClientId:
+        '40096343113-vceq22qgvri6v55478f22ji9g9n20dk6.apps.googleusercontent.com',
+    iosClientId:
+        '40096343113-4oh7o87v43tqri0tac2nf7bivl8uehhj.apps.googleusercontent.com',
+    iosBundleId: 'joao.rafa.todo',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyD10OVLxSy4L55RsfD3wThdZt5mM5g_brM',
+    appId: '1:40096343113:ios:620e2e5d29ee4a4c9b4b98',
+    messagingSenderId: '40096343113',
+    projectId: 'get-todoish',
+    storageBucket: 'get-todoish.appspot.com',
+    androidClientId:
+        '40096343113-vceq22qgvri6v55478f22ji9g9n20dk6.apps.googleusercontent.com',
+    iosClientId:
+        '40096343113-4oh7o87v43tqri0tac2nf7bivl8uehhj.apps.googleusercontent.com',
+    iosBundleId: 'joao.rafa.todo',
   );
 }
