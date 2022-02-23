@@ -3,10 +3,9 @@ name: Build
 # This workflow is triggered on pushes to the repository.
 
 on:
+  workflow_dispatch:
   pull_request:
-    types: [closed]
-  
-    
+    types: [closed]   
   push:
     branches:
       - main
