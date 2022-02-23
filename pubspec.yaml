@@ -41,6 +41,7 @@ dependencies:
   google_sign_in: ^5.2.4
   get_storage: ^2.0.3
   path_provider: ^2.0.9
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

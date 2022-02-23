@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/modules/home/widgets/task.widget.dart';
 import 'package:todo/shared/themes.dart';
 
 import 'home.controller.dart';
@@ -27,7 +28,6 @@ class HomePage extends GetView<HomeController> {
                       child: Obx(() => controller.user.value.photoURL != null
                           ? Image.network(
                               controller.user.value.photoURL!,
-                              
                               fit: BoxFit.contain,
                               frameBuilder: (context, child, frame,
                                   wasSynchronouslyLoaded) {
@@ -158,8 +158,22 @@ class HomePage extends GetView<HomeController> {
           ],
         ),
       ),
-      floatingActionButton:
-          FloatingActionButton(child: const Icon(Icons.add), onPressed: () {}),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Get.bottomSheet(taskDialog(controller),
+                enableDrag: true,
+                backgroundColor: Colors.transparent,
+                shape: const RoundedRectangleBorder(
+                    borderRadius:  BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20)),
+                    side:  BorderSide(
+                        color: Colors.white,
+                        style: BorderStyle.solid,
+
+                        width: 1)));
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
