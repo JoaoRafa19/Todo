@@ -30,6 +30,11 @@ jobs:
     # Get flutter dependencies.
     - run: flutter pub get
     
+    # generate icons
+    - run: flutter pub run flutter_launcher_icons:main
+    
+    #generate  splash screen 
+    - run: flutter pub run flutter_native_splash:createf
     # Check for any formatting issues in the code
     
     # Statically analyze the Dart code for any errors.
