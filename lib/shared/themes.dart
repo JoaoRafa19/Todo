@@ -3,7 +3,16 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Themes {
-  static final light = ThemeData.light().copyWith();
+  static final light = ThemeData.light().copyWith(
+    primaryColor: Colors.white70,
+    
+    primaryColorLight: Colors.white,
+    primaryColorDark: Colors.white10,
+    buttonTheme: const ButtonThemeData(
+      buttonColor: Colors.white10,
+      textTheme: ButtonTextTheme.primary,
+    ),
+  );
   static final dark = ThemeData.dark().copyWith();
 }
 

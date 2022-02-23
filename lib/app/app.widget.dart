@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:todo/app/app.pages.dart';
 import 'package:todo/app/routes.dart';
+import 'package:todo/app/translations.dart';
 import 'package:todo/shared/themes.dart';
 
 class AppWidget extends StatelessWidget {
@@ -17,6 +18,10 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,
       theme: Themes.light,
+      defaultTransition: Transition.zoom,
+      transitionDuration: const Duration(seconds: 1),
+      translations: Messages(),
+      locale: const Locale('pt', 'BR'),
       darkTheme: Themes.dark,
       themeMode: ThemeService().theme,
       initialRoute: FirebaseAuth.instance.currentUser == null ||

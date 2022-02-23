@@ -1,12 +1,24 @@
-class Task {
-  final bool done;
-  final String task;
-  final DateTime createAt;
-  final DateTime updateAt;
-  final DateTime deadline;
-  final String uid;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
-  Task(this.done, this.task, this.createAt, this.updateAt, this.deadline, this.uid);
+class Task {
+  bool? done;
+  String? task;
+  DateTime? createAt;
+  DateTime? updateAt;
+  DateTime? deadline;
+  String? uid;
+  String? id;
+
+  Task({
+    this.done,
+    this.task,
+    this.createAt,
+    this.updateAt,
+    this.deadline,
+    this.uid,
+    this.id,
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -16,17 +28,30 @@ class Task {
       'updateAt': updateAt,
       'deadline': deadline,
       'uid': uid,
+      'id': id
     };
   }
 
-  factory Task.fromJson(Map<String, dynamic> map) {
+  factory Task.newtask({String? task, DateTime? deadline, String? uid}) {
     return Task(
-      map['done'],
-      map['task'],
-      map['createAt'],
-      map['updateAt'],
-      map['deadline'],
-      map['uid'],
+        task: task,
+        uid: uid,
+        done: false,
+        createAt: DateTime.now(),
+        updateAt: DateTime.now(),
+        deadline: deadline,
+        id: const Uuid().v4());
+  }
+
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      done: json['done'],
+      task: json['task'],
+      createAt: (json['createAt'] as Timestamp).toDate(),
+      updateAt: (json['updateAt'] as Timestamp).toDate(),
+      deadline: (json['deadline'] as Timestamp).toDate(),
+      uid: json['uid'],
+      id: json['id'],
     );
   }
 }

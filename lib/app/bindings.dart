@@ -7,7 +7,7 @@ import '../modules/home/home.controller.dart';
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomeController>(() => HomeController());
+    Get.put<HomeController>(HomeController());
   }
 }
 
@@ -17,10 +17,10 @@ class LoginBinding implements Bindings {
     Get.lazyPut<LoginController>(() => LoginController());
   }
 }
+
 class RegisterBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<RegisterController>(() => RegisterController());
   }
-  
 }
