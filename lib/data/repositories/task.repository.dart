@@ -19,14 +19,24 @@ class TaskRepository {
 
   Future<void> update(Task task) async {
     try {
-      await api.doc(task.id).update(task.toJson());
+      final _task = await api.where("id", isEqualTo: task.id).get();
+      if (_task.docs.isNotEmpty) {
+        await api.doc(_task.docs.first.id).update(task.toJson());
+      }
     } catch (e) {
       rethrow;
     }
   }
 
   Future<void> delete(Task task) async {
-    await api.doc(task.uid).delete();
+    try {
+      final _task = await api.where("id", isEqualTo: task.id).get();
+      if (_task.docs.isNotEmpty) {
+        await api.doc(_task.docs.first.id).delete();
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<List<Task>> getAll() async {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo/modules/home/home.controller.dart';
 
+import '../../../data/models/task.model.dart';
+
 Widget taskDialog(HomeController controller) {
   return Container(
       decoration: BoxDecoration(
@@ -102,4 +104,20 @@ Widget taskDialog(HomeController controller) {
           ),
         ],
       ));
+}
+
+Widget buildListTile(Task task) {
+  return ListTile(
+    contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+    title: Text(task.task!,
+        style: TextStyle(
+            fontSize: 18,
+            decoration:
+                task.done! ? TextDecoration.lineThrough : TextDecoration.none)),
+    leading: Checkbox(
+      value: task.done,
+      onChanged: (value) {},
+    ),
+    subtitle: Text(task.deadline.toString().split(' ')[0]),
+  );
 }

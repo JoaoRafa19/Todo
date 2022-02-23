@@ -15,7 +15,9 @@ class HomeController extends GetxController {
   final loading = false.obs;
   final TaskRepository _repository = TaskRepository.instance;
 
-  final tasks = [].obs;
+  final tasks = <Task>[].obs;
+
+  var todayVisibility = true.obs;
 
   // TextControllers
   TextEditingController taskController = TextEditingController();
@@ -38,6 +40,18 @@ class HomeController extends GetxController {
     Get.offAllNamed(Routes.login);
   }
 
+  Future closeTask(Task task) async {
+    task.done = !task.done!;
+    await _repository.update(task);
+
+    tasks.value = await _repository.getByUser(user.value.uid);
+  }
+
+  Future removeTask(Task task) async {
+    await _repository.delete(task);
+    tasks.value = await _repository.getByUser(user.value.uid);
+  }
+
   Future addTask() async {
     try {
       loading.value = true;
@@ -49,7 +63,13 @@ class HomeController extends GetxController {
           deadline: selectedDate.value,
           task: taskController.text,
           uid: currentUser!.uid);
-      await _repository.add(task);
+      final ref = await _repository.add(task);
+      if (!ref.isBlank!) {
+        tasks.add(task);
+        taskController.clear();
+        Get.back();
+      }
+      loading.value = false;
     } catch (e) {
       Get.dialog(AlertDialog(
         title: Row(
