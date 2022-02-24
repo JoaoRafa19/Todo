@@ -26,17 +26,39 @@ class AuthRepository {
   }
 
   Future<UserCredential?> loginWithGoogle() async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
-    await _googleSignIn.signOut();
-    return _googleSignIn.signIn().then((account) async {
-      final GoogleSignInAuthentication googleAuth =
-          await account!.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-      return api.signInWithCredential(credential);
-    });
+    try {
+      final GoogleSignIn _googleSignIn = GoogleSignIn();
+      await _googleSignIn.signOut();
+      return _googleSignIn.signIn().then((account) async {
+        final GoogleSignInAuthentication googleAuth =
+            await account!.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        UserCredential usercredential =
+            await api.signInWithCredential(credential);
+        if (usercredential.user != null) {
+          if ((await db.collection('users').doc(usercredential.user!.uid).get())
+              .exists) {
+            return usercredential;
+          } else {
+            UserModel userModel = UserModel(
+              email: usercredential.user!.email!,
+              name: usercredential.user!.displayName!,
+              uid: usercredential.user!.uid,
+              createdAt: DateTime.now(),
+            );
+            await db.collection('users').add(userModel.toJson());
+
+            return usercredential;
+          }
+        }
+        return null;
+      });
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<User?> getCurrentUser() async {
