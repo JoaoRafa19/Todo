@@ -81,8 +81,13 @@ Widget taskDialog(HomeController controller) {
           const SizedBox(height: 20),
           GestureDetector(
             onTap: () async {
-              await controller.addTask();
-              Get.back();
+              if (controller.taskController.text.isNotEmpty) {
+                await controller.addTask();
+                Get.back();
+              } else {
+                Get.snackbar("Ops!", "Preencha o campo de task",
+                    snackPosition: SnackPosition.BOTTOM);
+              }
             },
             child: Container(
               width: Get.width * 0.8,
