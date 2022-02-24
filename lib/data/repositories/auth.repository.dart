@@ -36,8 +36,25 @@ class AuthRepository {
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
+        UserCredential usercredential =
+            await api.signInWithCredential(credential);
+        if (usercredential.user != null) {
+          if ((await db.collection('users').doc(usercredential.user!.uid).get())
+              .exists) {
+            return usercredential;
+          } else {
+            UserModel userModel = UserModel(
+              email: usercredential.user!.email!,
+              name: usercredential.user!.displayName!,
+              uid: usercredential.user!.uid,
+              createdAt: DateTime.now(),
+            );
+            await db.collection('users').add(userModel.toJson());
 
-        return api.signInWithCredential(credential);
+            return usercredential;
+          }
+        }
+        return null;
       });
     } catch (e) {
       return null;
