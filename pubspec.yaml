@@ -110,6 +110,4 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-  # CN=joao, OU=joao, O=joao, L=BH, ST=Minas Gerais, C=MG
-  # keystore pas = 19012001Jp
-  # c:\key.jks
+  
