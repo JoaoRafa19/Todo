@@ -21,6 +21,17 @@ TODO app
 
 ### Upcoming
 
+- [ ] Timer for tasks
+- [ ] Add task to calendar
+- [ ] Internationalization
+- [ ] Implement google ADS
+- [ ] Alarm for pending tasks
+- [ ] Implement firebase analitics events
+- [ ] Implement firebase analitics
+- [ ] Implement firebase crashlytics
+- [ ] Implement firebase performance
+- [ ] Implement Notifications for pending tasks 
+- [ ] Implement In App Notifications
 - [ ] Task list with filter
 - [ ] Task list with search
 - [ ] Task list with sorting
@@ -30,7 +41,6 @@ TODO app
 - [ ] Alarm for task
 - [ ] Task with subtasks
 - [ ] Taks with notification
-
 
 
 
