@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="joao.rafa.todo">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="todo"
+        android:label="ToDo"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
