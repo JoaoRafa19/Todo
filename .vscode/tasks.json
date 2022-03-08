@@ -1,0 +1,56 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "command": "keytool",
+            "args": [
+                "-genkey",
+                " -v", 
+                "-keystore", 
+                ".\\key1.jks", 
+                "-keyalg",
+                "RSA" ,
+                "-keysize" ,
+                "2048" ,
+                "-validity" ,
+                "10000" ,
+                "-alias" ,
+                "upload" ,
+                "-storetype" ,
+                "JKS"
+            ],
+            "problemMatcher": [],
+            "label": "Keytool generate key",
+            "detail": ""
+        },
+        {
+            "type": "flutter",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "get"
+            ],
+            "problemMatcher": [],
+            "label": "flutter: flutter pub get",
+            "detail": ""
+        },
+        {
+            "type": "flutter",
+            "command": "flutter",
+            "args": [
+                "build",
+                "appappbundle"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "label": "flutter: flutter build apk",
+            "detail": ""
+        }
+    ]
+}

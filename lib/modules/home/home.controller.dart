@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:todo/app/routes.dart';
 import 'package:todo/data/repositories/auth.repository.dart';
 import 'package:todo/data/repositories/task.repository.dart';
+import 'package:add_2_calendar/add_2_calendar.dart';
 
 import '../../data/models/task.model.dart';
 import '../../shared/themes.dart';
@@ -24,9 +25,48 @@ class HomeController extends GetxController {
   var todayVisibility = true.obs;
   var tomorrowVisibility = true.obs;
 
+  var addToCalendar = false.obs;
+
   // TextControllers
   TextEditingController taskController = TextEditingController();
   final selectedDate = DateTime.now().obs;
+
+  set setDeadLine(DateTime date) {
+    selectedDate.value = date;
+  }
+
+  Future<void> setAlarm(TimeOfDay? time) async {
+    try {
+      if (time != null) {
+        selectedDate.value = DateTime(
+            selectedDate.value.year,
+            selectedDate.value.month,
+            selectedDate.value.day,
+            time.hour,
+            time.minute);
+      }
+    } catch (e) {
+      Get.dialog(AlertDialog(
+        title: Row(
+          children: const [
+            Icon(Icons.error),
+            SizedBox(width: 10),
+            Text('Error'),
+          ],
+        ),
+        content: const Text('Error adding to calendar'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('ok'),
+            onPressed: () {
+              Get.back();
+              loading.value = false;
+            },
+          )
+        ],
+      ));
+    }
+  }
 
   HomeController();
 
@@ -82,12 +122,43 @@ class HomeController extends GetxController {
           task: taskController.text,
           uid: currentUser!.uid);
       final ref = await _repository.add(task);
+
       if (!ref.isBlank!) {
         await getTasks();
         taskController.clear();
-        Get.back();
+        Event event = Event(
+            title: taskController.text,
+            description: '',
+            startDate: selectedDate.value,
+            endDate: selectedDate.value,
+            location: '',
+            allDay: false);
+
+        loading.value = false;
+
+        if (addToCalendar.value) {
+          Add2Calendar.addEvent2Cal(event).then((value) {
+            if (value) {
+              Get.snackbar('Success', 'Event added to calendar',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: Colors.green,
+                  colorText: Colors.white,
+                  borderColor: Colors.green);
+            } else {
+              Get.snackbar('Error', 'Error adding to calendar',
+                  snackPosition: SnackPosition.BOTTOM,
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                  borderColor: Colors.red);
+            }
+            Get.back();
+          });
+        } else {
+          Get.back();
+        }
+      } else {
+        throw Exception('Error adding task');
       }
-      loading.value = false;
     } catch (e) {
       Get.dialog(AlertDialog(
         title: Row(
