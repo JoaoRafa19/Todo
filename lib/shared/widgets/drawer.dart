@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/modules/ads/add.page.dart';
 
 import '../../modules/home/home.controller.dart';
 import '../themes.dart';
@@ -95,6 +95,17 @@ class CustomDrawer extends StatelessWidget {
                     : const Text('Logout'),
                 onTap: () async {
                   controller.logOut();
+                },
+              )),
+          Obx(() => ListTile(
+                title: controller.loading.value
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : const Text('Ajude'),
+                onTap: () async {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: ((context) => AddPage())));
                 },
               )),
           Obx(() => ListTile(
