@@ -1,23 +1,22 @@
 import 'dart:io' show Platform;
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-// You can also test with your own ad unit IDs by registering your device as a
-// test device. Check the logs for your device's ID value.
-
 const int maxFailedLoadAttempts = 3;
 
 class AddPage extends StatefulWidget {
+  const AddPage({Key? key}) : super(key: key);
+
   @override
   __AddPage createState() => __AddPage();
 }
 
 class __AddPage extends State<AddPage> {
   static const AdRequest request = AdRequest(
-    keywords: <String>['foo', 'bar', 'imóvel', 'apartamento', 'carro'],
-    contentUrl: 'http://foo.com/bar.html',
+    keywords: <String>['imóvel', 'apartamento', 'carro'],
     nonPersonalizedAds: true,
   );
 
@@ -39,8 +38,8 @@ class __AddPage extends State<AddPage> {
   Future _createInterstitialAd() async {
     await InterstitialAd.load(
         adUnitId: Platform.isAndroid
-            ? 'ca-app-pub-4292490624006412/2062258224'
-            : 'ca-app-pub-4292490624006412/2062258224',  
+            ? 'ca-app-pub-4292490624006412/8815368830'
+            : 'ca-app-pub-4292490624006412/8815368830',
         request: request,
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (InterstitialAd ad) {
@@ -97,31 +96,37 @@ class __AddPage extends State<AddPage> {
     return MaterialApp(
       home: Builder(builder: (BuildContext context) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('AdMob Plugin example app'),
-            actions: <Widget>[
-              PopupMenuButton<String>(
-                onSelected: (String result) {
-                  switch (result) {
-                    case 'InterstitialAd':
-                      _showInterstitialAd();
-                      break;
-
-                    default:
-                      throw AssertionError('unexpected button: $result');
-                  }
-                },
-                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
-                    value: 'InterstitialAd',
-                    child: Text('InterstitialAd'),
+            body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              child: Container(
+                height: 50,
+                color: Colors.blue,
+                child: const Center(
+                  child: Text(
+                    'Show Ad',
+                    style: TextStyle(color: Colors.white),
                   ),
-                ],
+                ),
               ),
-            ],
-          ),
-          body: SafeArea(child: Text("ola")),
-        );
+              onTap: () async {
+                _showInterstitialAd();
+                await FirebaseAnalytics.instance
+                    .logEvent(name: 'show_add', parameters: <String, dynamic>{
+                  'content_type': 'interstitial',
+                });
+              },
+            ),
+            BackButton(
+              color: Colors.blue,
+              onPressed: () {
+                Get.back();
+              },
+            ),
+          ],
+        ));
       }),
     );
   }
