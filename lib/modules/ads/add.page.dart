@@ -40,7 +40,7 @@ class __AddPage extends State<AddPage> {
     await InterstitialAd.load(
         adUnitId: Platform.isAndroid
             ? 'ca-app-pub-4292490624006412/2062258224'
-            : 'ca-app-pub-4292490624006412/2062258224',
+            : 'ca-app-pub-4292490624006412/2062258224',  
         request: request,
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (InterstitialAd ad) {
