@@ -39,15 +39,16 @@
               "client_type": 3
             },
             {
-              "client_id": "40096343113-q5t8e009ejgb2orlj72a62krd6g0lrct.apps.googleusercontent.com",
+              "client_id": "40096343113-4oh7o87v43tqri0tac2nf7bivl8uehhj.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "joao.rafa"
+                "bundle_id": "joao.rafa.todo"
               }
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-4292490624006412~3296282998"
     }
   ],
   "configuration_version": "1"
