@@ -20,14 +20,14 @@ class __AddPage extends State<AddPage> {
     nonPersonalizedAds: true,
   );
 
+  bool showingAdd = false;
+
   InterstitialAd? _interstitialAd;
   int _numInterstitialLoadAttempts = 0;
 
   RewardedAd? _rewardedAd;
-  int _numRewardedLoadAttempts = 0;
 
   RewardedInterstitialAd? _rewardedInterstitialAd;
-  int _numRewardedInterstitialLoadAttempts = 0;
 
   @override
   void initState() {
@@ -42,24 +42,24 @@ class __AddPage extends State<AddPage> {
             : 'ca-app-pub-4292490624006412/8815368830',
         request: request,
         adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (InterstitialAd ad) {
+          onAdLoaded: (InterstitialAd ad) async {
             Get.log('$ad loaded');
             _interstitialAd = ad;
             _numInterstitialLoadAttempts = 0;
-            _interstitialAd!.setImmersiveMode(true);
+            await _interstitialAd!.setImmersiveMode(true);
           },
-          onAdFailedToLoad: (LoadAdError error) {
+          onAdFailedToLoad: (LoadAdError error) async {
             Get.log('InterstitialAd failed to load: $error.');
             _numInterstitialLoadAttempts += 1;
             _interstitialAd = null;
             if (_numInterstitialLoadAttempts < maxFailedLoadAttempts) {
-              _createInterstitialAd();
+              await _createInterstitialAd();
             }
           },
         ));
   }
 
-  void _showInterstitialAd() {
+  Future _showInterstitialAd() async {
     if (_interstitialAd == null) {
       Get.log('Warning: attempt to show interstitial before loaded.');
       _createInterstitialAd();
@@ -68,15 +68,15 @@ class __AddPage extends State<AddPage> {
     _interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
       onAdShowedFullScreenContent: (InterstitialAd ad) =>
           Get.log('ad onAdShowedFullScreenContent.'),
-      onAdDismissedFullScreenContent: (InterstitialAd ad) {
+      onAdDismissedFullScreenContent: (InterstitialAd ad) async {
         Get.log('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
-        _createInterstitialAd();
+        await _createInterstitialAd();
       },
-      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        print('$ad onAdFailedToShowFullScreenContent: $error');
+      onAdFailedToShowFullScreenContent:
+          (InterstitialAd ad, AdError error) async {
         ad.dispose();
-        _createInterstitialAd();
+        await _createInterstitialAd();
       },
     );
     _interstitialAd!.show();
@@ -104,18 +104,26 @@ class __AddPage extends State<AddPage> {
               child: Container(
                 height: 50,
                 color: Colors.blue,
-                child: const Center(
-                  child: Text(
-                    'Show Ad',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: Center(
+                  child: showingAdd
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          'Show Ad',
+                          style: TextStyle(color: Colors.white),
+                        ),
                 ),
               ),
               onTap: () async {
-                _showInterstitialAd();
+                setState(() {
+                  showingAdd = true;
+                });
+                await _showInterstitialAd();
                 await FirebaseAnalytics.instance
                     .logEvent(name: 'show_add', parameters: <String, dynamic>{
                   'content_type': 'interstitial',
+                });
+                setState(() {
+                  showingAdd = false;
                 });
               },
             ),

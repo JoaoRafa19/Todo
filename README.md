@@ -46,9 +46,7 @@ TODO app
 
 
 # APK
-You can download the APK from the [releases page](https://github.com/JoaoRafa19/Todo/releases)
-.
-
+You can download the APK from the [google play](https://play.google.com/store/apps/details?id=joao.rafa.todo)
 
 
 # [Zip project file](https://github.com/JoaoRafa19/Todo/archive/refs/tags/Base.zip)
@@ -60,12 +58,23 @@ or click on the button below.
 
 # Demo video
 
-# What Is Your Monetization Model?
-
-
 ## Register
 
     The registration is free.
     For registration only need your name, e-mail and a password password.
     The registration is used to help us to keep monitoring the project and the use, to generate statistics and to help us to improve the quality of the service.
 
+## Develop and monetize
+
+    The app is developed by JoaoRafa19.
+    The app is monetized by Google Ads.
+
+
+# Develop help comands
+
+    Chaves de assinatura SHA1 e SHA256 do projeto:
+    ```
+     ./gradlew signingReport
+     ```
+
+    

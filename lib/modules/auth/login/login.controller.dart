@@ -92,7 +92,7 @@ class LoginController extends GetxController {
             Text('Error'),
           ],
         ),
-        content: Text("Invalid credentials, ${e}"),
+        content: Text("Invalid credentials, $e"),
         actions: <Widget>[
           TextButton(
             child: const Text('ok'),

@@ -105,7 +105,7 @@ class CustomDrawer extends StatelessWidget {
                     : const Text('Ajude'),
                 onTap: () async {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: ((context) => AddPage())));
+                      MaterialPageRoute(builder: ((context) => const AddPage())));
                 },
               )),
           Obx(() => ListTile(
