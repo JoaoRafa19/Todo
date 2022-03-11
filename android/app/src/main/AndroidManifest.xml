@@ -5,6 +5,9 @@
         android:label="ToDo"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4292490624006412~3296282998"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
